@@ -14,6 +14,16 @@ class SignUpView(generic.CreateView):
 
 
 def list_yarn(request):
+    """The view for our landing page processes our database for easy iteration
+    in the list_yarn template using loops, and passes the processed database
+    into context.
+
+    :param request: a Django-generated HttpRequest instance
+    :type request: Any
+    :return: an HttpResponse that renders the given template with the given
+    context
+    :rtype: function
+    """    
     
     # list of querysets to iterate over in the view
     list_yarns = [i for i in Yarn.objects.all()]
@@ -31,7 +41,7 @@ def display_yarn(request, yarn_id):
     yarn = get_object_or_404(Yarn, pk=yarn_id)
     reviews = Review.objects.filter(yarn=yarn_id).select_related("author")
     
-    # pass qty into context for us in a dropdown menu
+    # pass qty into context for use in a dropdown menu
     context = {
         "yarn": yarn,
         "reviews": reviews,
