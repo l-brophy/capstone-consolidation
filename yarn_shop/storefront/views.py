@@ -20,8 +20,7 @@ def list_yarn(request):
 
     :param request: a Django-generated HttpRequest instance
     :type request: Any
-    :return: an HttpResponse that renders the given template with the given
-    context
+    :return: an HttpResponse that renders the given template with the given context
     :rtype: function
     """    
     
@@ -46,8 +45,7 @@ def display_yarn(request, yarn_id):
     :type request: Any
     :param yarn_id: the primary key of the currently displayed yarn
     :type yarn_id: int
-    :return: an HttpResponse that renders the given context within the given 
-    template
+    :return: an HttpResponse that renders the given context within the given template
     :rtype: function
     """    
     yarn = get_object_or_404(Yarn, pk=yarn_id)
