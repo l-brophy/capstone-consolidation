@@ -1,0 +1,30 @@
+{% extends 'master.html' %}
+{% block title %}
+    sign up
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class='container mx-3 p-3'>
+        {% csrf_token %}
+        <div class="row p-3">
+            {% for field in form %}
+            <div class="row p-1">
+                {{ field.label_tag }}
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    {{ field }}
+                </div>
+            </div>
+            {% if field.help_text %}
+            <div class="row">
+                <p class="help">{{ field.help_text|safe }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <button type="submit" class="btn btn-link col-1">register</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

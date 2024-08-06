@@ -1,0 +1,49 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %} 
+    louie's loom 
+{% endblock %} 
+
+{% block content %} 
+    <div class="container-fluid ps-5 py-3">
+        <div class="row">
+            <div class="col-10">
+                <h3>
+                    louie's loom
+                </h3>
+                <p>
+                    welcome to louie's loom! my boyfriend made the really cool
+                    logo here. 
+                </p>
+            </div>
+            <div class="col-2">
+                <img class="img-fluid float-end" 
+                    src="{% static 'style/louies_loom.png' %}">
+            </div>
+        </div>
+    </div>
+    
+    {% for row in table_yarns %}
+    <div class="row px-5 py-3">
+        {% for yarn in row %}
+        <div class="col-3">
+            <div class="card">
+                <img class="card-img-top" src="{% static yarn.img_url %}" />
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="{% url "yarn" yarn.id %}">
+                            {{ yarn.name }}</a>
+                        <small class="text-black-50">{{ yarn.brand }}</small>
+                    </h4>
+                    <p class="card-text">{{ yarn.makeup }}</p>
+                    <div class="row">
+                        <h5>R{{ yarn.price }} / {{ yarn.weight }}g</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endfor %}
+{% endblock %}

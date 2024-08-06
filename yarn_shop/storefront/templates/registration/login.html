@@ -1,0 +1,36 @@
+{% extends 'master.html' %}
+{% block title %}
+    log in
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class='container mx-3 p-3'>
+        {% csrf_token %}
+        <div class="row p-3">
+            {% for field in form %}
+            <div class="row p-1">
+                {{ field.label_tag }}
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    {{ field }}
+                </div>
+            </div>
+            {% if field.help_text %}
+            <div class="row">
+                <p class="help">{{ field.help_text|safe }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="col">
+                <input class="btn btn-link" type="submit" value="login">
+            <div class="row py-3">
+                <p> Don't have an account?</br>
+                    Register <a href="{% url 'signup' %}">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

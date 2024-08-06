@@ -1,0 +1,82 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+    {{ yarn.brand }} {{ yarn.name }}
+{% endblock %}
+
+{% block content %}
+<div class="card m-5 border-0">
+    <div class="row">
+        <div class="col-5 pe-5">
+            <img class="img-fluid" src="{% static yarn.img_url %}">
+        </div>
+        <div class="col-7 ps-5">
+            <div class="row py-5">
+                <h2>{{ yarn.name }}
+                    <small>by {{ yarn.brand }}</small>
+                </h2>
+            </div>
+            <div class="row pb-5">
+                <p>{{ yarn.makeup }}</p>
+            </div>
+            <div class="row mt-5">
+                <div class="col-4">
+                    <h3>R{{ yarn.price }} / {{ yarn.weight }}g</h3>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col">
+                            <select type="button" name="qty">
+                                {% for i in qty %}
+                                    <option>{{ i }}</option>
+                                    {% endfor %}
+                            </select>
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% if user.is_authenticated %}
+        <form method="post">
+            <div class="row">
+                {{ form.review_content.label_tag }}
+            </div>
+            <div class="col-12 pt-3">
+                <div class="row">
+                    {{ form.review_content }}
+                </div>
+            </div>
+            {% csrf_token %}
+            <div class="col-1">
+                <button type="submit" class="btn p-3">
+                    submit </button>
+            </div>
+        </form>
+    {% endif %}
+    {% if not reviews %}
+    <p>Be the first to leave a review!</p>
+    {% else %}
+    {% for review in reviews %}
+    <div class="row p-3">
+        <div class="col-4">
+            <div class="row">
+                <p><b>@{{ review.author }}</b></p>
+            </div>
+            <div class="row">
+                <p>{{ review.pub_date }}</p>
+            </div>
+        </div>
+        <div class="col-8">
+            <p>{{ review.content }}</p>
+        </div>
+        <hr/>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

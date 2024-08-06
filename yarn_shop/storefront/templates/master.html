@@ -1,0 +1,57 @@
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style/style.css" %}">
+    <link rel="icon" href="{% static 'style/favicon.ico' %}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <div class="nav">
+        <div class="container-fluid px-2 py-3">
+            <div class="row">
+                <div class="col-2 px-5">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link">
+                            log out
+                        </button>
+                    </form>
+                    {% else %}
+                    <a href="{% url 'login' %}">
+                        <button class="btn btn-link">
+                            log in
+                        </button>
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="col-2">
+                    <a href="{% url 'all_yarn' %}">
+                        <button class="btn btn-link">
+                            our stock
+                        </button>
+                    </a>
+                </div>
+                <!-- <div class="col-8">
+                    <img class="img-fluid" 
+                        src="{% static 'style/louies_loom.png' %}"
+                        alt="thank you to my boyfriend for the logo :)">
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
