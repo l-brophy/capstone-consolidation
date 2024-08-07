@@ -2,3 +2,4 @@ asgiref==3.8.1
 Django==5.0.7
 django-bootstrap5==24.2
 sqlparse==0.5.1
+python-decouple==3.8
