@@ -13,8 +13,9 @@ Declare that variable, and run `python3 manage.py runserver`.
 
 ## with docker
 To run using Docker, make sure that you have the Docker daemon running.
-To pull the image, run the command `docker pull depechemold/h-consolidation`
-Then, anywhere in your Terminal, run the command `docker run -d -p 8000:8000 depechemold/h-consolidation`. 
+To pull the image, navigate your Terminal to any directory you prefer, and run the command `docker pull depechemold/h-consolidation`. 
+
+Then, from the same directory, run the command `docker run -d -p 8000:8000 depechemold/h-consolidation`. 
 If everything is as it should be, it will display a set of numbers.
 
 ## either or
